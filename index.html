@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ankush Panday - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <style>
+        :root {
+            --bg-color: linear-gradient(45deg, #3498db, #8e44ad);
+            --text-color: #fff;
+            --section-bg: rgba(255, 255, 255, 0.1);
+            --hover-color: #2ecc71;
+            --footer-bg: rgba(0, 0, 0, 0.2);
+            --nav-bg: rgba(0, 0, 0, 0.5);
+            --link-hover-color: #2ecc71;
+        }
+
+        .dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #f0f0f0;
+            --section-bg: #2a2a2a;
+            --footer-bg: rgba(255, 255, 255, 0.1);
+            --nav-bg: rgba(0, 0, 0, 0.7);
+            --link-hover-color: #27ae60;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 0 auto; /* Adjusted for fixed header */
+            padding: 20px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: var(--nav-bg);
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: background-color 0.3s;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+            flex: 1;
+            justify-content: flex-start; /* Changed to flex-start to align links to the left */
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--link-hover-color);
+        }
+
+        /* Dark Mode Toggle positioned on the right */
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 1.5em;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        header {
+            display: flex;
+            justify-content: flex-start; /* Changed to flex-start for better alignment */
+            align-items: center;
+            padding: 20px 0;
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Space Typing Animation */
+        .name-animation {
+            overflow: hidden;
+            border-right: .15em solid var(--text-color);
+            white-space: nowrap;
+            margin: 0;
+            letter-spacing: .15em;
+            font-size: 2em;
+            animation:
+                typing 4s steps(14, end) forwards,
+                blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 13ch } /* Adjusted to match "Ankush Panday" length */
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--text-color); }
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--text-color);
+            transition: transform 0.3s;
+            margin-right: 40px;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.1);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-me {
+            flex: 1;
+        }
+
+        h1, h2 {
+            margin-bottom: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 24px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--link-hover-color);
+            transform: scale(1.2);
+        }
+
+        section {
+            background-color: var(--section-bg);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+        }
+
+        .skills-list, .experience-list, .education-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .skills-list li, .experience-list li, .education-list li {
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+
+        .skills-list li:hover, .experience-list li:hover, .education-list li:hover {
+            transform: translateX(10px);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input, textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            transition: background-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            outline: none;
+        }
+
+        button {
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: var(--footer-bg);
+            color: var(--text-color);
+            position: relative;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        .floating-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--hover-color);
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+
+        .floating-button:hover {
+            background-color: #27ae60;
+            transform: scale(1.1);
+        }
+
+        .floating-button i {
+            font-size: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .about-me {
+                margin-left: 20px;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                margin-right: 20px;
+            }
+
+            nav ul {
+                gap: 10px;
+                flex: 1;
+                justify-content: flex-start;
+            }
+
+            /* Adjust the toggle button margin for smaller screens */
+            .dark-mode-toggle {
+                margin-left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="https://docs.google.com/document/d/1207iwPxqKbYvosZD0cuRJaL14qEoJdXYqnm6s-fR4EY/edit?usp=sharing" target="_blank">Resume</a></li>
+            <li><a href="https://leetcode.com/ankushpanday" target="_blank">LeetCode</a></li>
+            <li><a href="https://www.medium.com/@ankushpanday" target="_blank">Medium</a></li>
+            <li><a href="https://www.linkedin.com/in/ankushpanday/" target="_blank">LinkedIn</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+
+    <div class="container">
+        <header>
+            <div class="profile-image">
+                <img src="/api/placeholder/200/200" alt="Ankush Panday">
+            </div>
+            <div class="about-me">
+                <h1 class="name-animation">Ankush Panday</h1>
+                <p>Product Manager | Delhi</p>
+                <p>Email: <a href="mailto:Panday92005@gmail.com" style="color: var(--text-color);">Panday92005@gmail.com</a> | Phone: +91-8076990197</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/ankushpanday/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.medium.com/@ankushpanday" target="_blank"><i class="fab fa-medium"></i></a>
+                    <a href="https://github.com/Ankushpanday1" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://leetcode.com/ankushpanday" target="_blank"><i class="fab fa-leetcode"></i></a>
+                    <a href="mailto:Panday92005@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </header>
+
+        <section id="about">
+            <h2>Professional Summary</h2>
+            <p>Founding Product Manager with 2+ years of experience driving brand strategy, evaluating product performance and building products like apps and websites with user base of more than 20 lakh users for organizations like INSTAASTRO and IBC Media that generated revenue of 16.7 Crores INR.</p>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            <ul class="experience-list">
+                <li>
+                    <h3>Product Manager - IDEASAND.COM Tech Pvt Ltd</h3>
+                    <p>MAY 2024 – Present, Delhi</p>
+                    <p>At Ideasand.com I am working on MVP Planning and Launching. I managed cross-functional teams of 6 individuals consisting of UX Designers, Front-end engineers, Backend Engineers and QA Testers.</p>
+                </li>
+                <li>
+                    <h3>Product Analyst (Associate Product Manager) - INSTAASTRO Tech Pvt Ltd</h3>
+                    <p>Feb 2023 – May 2024, Noida, UP</p>
+                    <p>Managed InstaAstro's Astrology Consulting Development of user app, Astrologer App, and Website. Tripled daily revenue from ₹3.86 lakh per day to ₹15.2 lakh per day in span of 7 months, increased user retention from 38% to 72.4% that led to grew monthly active users to 5 lakh. Tackled user retention issues by implementing an agile approach, which greatly improved team collaboration and feature delivery. I also introduced a data-driven decision-making culture, leading to more efficient project management and better prioritization of features.</p>
+                </li>
+                <li>
+                    <h3>Associate Product Manager Intern - IBC MEDIA</h3>
+                    <p>August 2022 – February 2023, Remote (Hyderabad)</p>
+                    <p>Developed a comprehensive LMS and recruitment system for blockchain education and job placement. Enabled 4,339 students to join courses, 1,277 to complete them, facilitated 307 job applications, and secured 150+ placements. Partnered with 60+ Web3 partners including Polkadot, Nitro Network, and Unique Coin. Worked on strategy for flawless user flow, doubt management features, and tackled job posting fraud.</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <h3>PM Skills:</h3>
+            <p>User Persona, Product Road Map, Problem identification, Wireframing, User stories, Solutioning, Planning, Market Research, Leadership, User Experience, Communication Skills and Competitive Analysis.</p>
+            <h3>Tools:</h3>
+            <p>Clevertap, Whimsical, Microsoft Office, Microsoft Clarity, Jira, GitLab, Mixpanel, Figma, Agile, Scrum, Google Analytics, Canva.</p>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <ul class="education-list">
+                <li>
+                    <h3>B.Tech Computer Science Engineering</h3>
+                    <p>Dr. APJ. Abdul Kalam Technical University, Batch (2020-2024)</p>
+                    <p>Greater Noida, Uttar Pradesh</p>
+                </li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <p>Made with <i class="fas fa-heart"></i> in Delhi</p>
+    </footer>
+
+    <button class="floating-button" id="scrollTopButton" title="Go Above">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            icon.classList.toggle('fa-moon');
+            icon.classList.toggle('fa-sun');
+        });
+
+        // Smooth scrolling for the Contact link
+        document.querySelector('a[href="#contact"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#contact').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            // Optionally, you can add form submission logic here
+            this.reset();
+        });
+
+        // Add animation to sections on scroll
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(section);
+        });
+
+        // Floating "Go Above" Button
+        const scrollTopButton = document.getElementById('scrollTopButton');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopButton.style.display = 'flex';
+            } else {
+                scrollTopButton.style.display = 'none';
+            }
+        });
+
+        scrollTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Stop blinking caret after typing animation
+        const nameAnimation = document.querySelector('.name-animation');
+        nameAnimation.addEventListener('animationend', (e) => {
+            if (e.animationName === 'typing') {
+                nameAnimation.style.borderRight = 'none';
+                nameAnimation.style.animation = 'none';
+                nameAnimation.textContent = 'Ankush Panday'; // Ensure full text is displayed
+            }
+        });
+    </script>
+</body>
+</html>
